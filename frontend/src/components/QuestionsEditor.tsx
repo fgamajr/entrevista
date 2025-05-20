@@ -1,42 +1,38 @@
 import React from 'react';
 
-export default function QuestionsEditor({ perguntas, setPerguntas }: any) {
-  const atualizar = (index: number, field: string, value: string) => {
-    const nova = [...perguntas];
-    nova[index][field] = value;
-    setPerguntas(nova);
-  };
-
-  const adicionar = () => {
-    setPerguntas([...perguntas, { titulo: "", texto: "" }]);
-  };
-
+export default function QuestionsEditor({ perguntas, setPerguntas }) {
   const remover = (index: number) => {
-    const nova = perguntas.filter((_: any, i: number) => i !== index);
-    setPerguntas(nova);
+    const novas = [...perguntas];
+    novas.splice(index, 1);
+    setPerguntas(novas);
+  };
+
+  const atualizar = (index: number, key: string, valor: string) => {
+    const novas = [...perguntas];
+    novas[index][key] = valor;
+    setPerguntas(novas);
   };
 
   return (
-    <div className="space-y-2">
-      <label className="font-semibold">Perguntas:</label>
-      {perguntas.map((p: any, i: number) => (
-        <div key={i} className="border p-2 rounded space-y-1">
+    <div className="space-y-4">
+      <h2 className="text-lg font-semibold">Perguntas:</h2>
+      {perguntas.map((p, i) => (
+        <div key={i} className="border rounded p-3 space-y-2 bg-gray-50 shadow-sm">
           <input
             value={p.titulo}
-            onChange={e => atualizar(i, 'titulo', e.target.value)}
-            className="w-full p-1 border rounded"
+            onChange={(e) => atualizar(i, 'titulo', e.target.value)}
             placeholder="Título"
+            className="w-full border px-2 py-1 rounded"
           />
           <textarea
             value={p.texto}
-            onChange={e => atualizar(i, 'texto', e.target.value)}
-            className="w-full p-1 border rounded"
-            placeholder="Texto da pergunta"
+            onChange={(e) => atualizar(i, 'texto', e.target.value)}
+            placeholder="Pergunta"
+            className="w-full border px-2 py-1 rounded"
           />
-          <button onClick={() => remover(i)} className="text-sm text-red-600 hover:underline">Remover</button>
+          <button onClick={() => remover(i)} className="text-red-600 text-sm">Remover</button>
         </div>
       ))}
-      <button onClick={adicionar} className="text-sm text-blue-600 hover:underline">+ Adicionar pergunta</button>
     </div>
   );
 }

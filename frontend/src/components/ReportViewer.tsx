@@ -1,14 +1,14 @@
 import React from 'react';
 
-export default function ReportViewer({ respostas }: any) {
+export default function ReportViewer({ respostas }) {
   return (
-    <div className="mt-6 bg-white p-4 border rounded shadow">
-      <h2 className="text-xl font-semibold mb-2">Relatório Gerado</h2>
-      <div className="space-y-4 whitespace-pre-wrap">
-        {respostas.map((r: string, i: number) => (
-          <div key={i}><strong>{i + 1}.</strong> {r}</div>
-        ))}
-      </div>
+    <div className="space-y-4 mt-4 bg-green-50 border border-green-200 p-4 rounded">
+      <h2 className="text-lg font-bold text-green-800">📄 Relatório Gerado</h2>
+      {respostas.map((r, i) => (
+        <div key={i} className="bg-white border rounded shadow px-4 py-3">
+          <p>{r}</p>
+        </div>
+      ))}
     </div>
   );
 }

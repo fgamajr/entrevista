@@ -1,0 +1,22 @@
+# Node
+node_modules/
+dist/
+
+# Python
+__pycache__/
+*.py[cod]
+*.env
+.env
+.env.*
+
+# IDEs
+.vscode/
+.idea/
+
+# Logs e zips
+*.log
+*.zip
+
+# Outros
+.DS_Store
+*.swp
